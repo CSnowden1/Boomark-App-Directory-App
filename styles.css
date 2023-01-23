@@ -1,3 +1,30 @@
+html {
+    background: transparent;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .header {
     display: flex;
+}
+
+
+.search-bar {
+    width: 20rem;
+    border: solid black 1px;
+    border-radius: .5rem;
+    height: auto;
+    text-align: center;
+    font-size: 1rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-weight: 500;
 }
