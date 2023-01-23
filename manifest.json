@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Iphone-like Bookmark Display",
+    "name": "Bookmark Directory",
     "version": "1.0",
-    "description": "This extension turns your bookmark bar into an iPhone-like display.",
+    "description": "This extension turns your bookmark bar into an Mobile Phone Like Directory.",
     "permissions": [
         "bookmarks",
         "activeTab"

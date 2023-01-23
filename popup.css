@@ -1,0 +1,36 @@
+html {
+    width: 20rem;
+    padding: 1rem;
+}
+
+.text {
+    font-size: .8rem;
+}
+
+
+
+
+.btn-box {
+    margin-top: .7rem;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.directory-btn {
+    border: solid black 1px;
+    color: black;
+    background-color: white;
+
+}
+
+.directory-btn:hover {
+    border: solid black 1px;
+    color: black;
+    background-color: white;
+    width: 15rem;
+    cursor: pointer;
+
+}
+
