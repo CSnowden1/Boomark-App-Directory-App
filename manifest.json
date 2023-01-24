@@ -5,7 +5,8 @@
     "description": "This extension turns your bookmark bar into an Mobile Phone Like Directory.",
     "permissions": [
         "bookmarks",
-        "activeTab"
+        "activeTab",
+        "tabs"
     ],
     "content_scripts": [
         {

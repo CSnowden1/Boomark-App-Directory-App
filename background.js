@@ -1,37 +1,28 @@
 chrome.runtime.onInstalled.addListener(function() {
-    chrome.bookmarks.create({title: "Bookmark Directory", parentId: "1"});
-});
-
-
-chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-    let bookmarksBar = bookmarkTreeNodes[0].children.find(node => node.title === "Bookmarks bar");
-    let directory = bookmarksBar.children.find(node => node.title === "Bookmark Directory");
-    chrome.bookmarks.getChildren(directory.id, function(bookmarks) {
-        bookmarks.forEach(bookmark => {
-            chrome.bookmarks.move(bookmark.id, {parentId: directory.id});
-        });
+    chrome.bookmarks.create({
+        parentId: "1", // the ID of the bookmark bar
+        title: "Bookmark Directory",
+        url: chrome.runtime.getURL("index.html")
     });
 });
 
-
-chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
-    if (bookmark.parentId === directory.id) {
-        // code to update the list in the popup
+chrome.bookmarks.search({'title': 'Bookmark Directory'}, function(bookmarks) {
+    if (bookmarks.length > 0) {
+        var bookmarkId = bookmarks[0].id;
+        chrome.bookmarks.onClicked.addListener(function(bookmark) {
+            if (bookmark.id === bookmarkId) {
+                chrome.windows.create({
+                    url: 'about:blank',
+                    type: "popup",
+                    width: 800,
+                    height: 600
+                }, function(newWindow) {
+                    chrome.tabs.query({active: true, windowId: newWindow.id}, function(tabs) {
+                        var newTab = tabs[0];
+                        chrome.tabs.executeScript(newTab.id, {file: 'content.js'});
+                    });
+                });
+            }
+        });
     }
 });
-
-chrome.bookmarks.onRemoved.addListener(function(id, removeInfo) {
-    if (removeInfo.parentId === directory.id) {
-        // code to update the list in the popup
-    }
-});
-
-
-
-
-console.log("This is the background JS File")
-chrome.bookmarks.create({
-    parentId: "bookmark_bar",
-    title: "Bookmark Directory",
-    url: "chrome-extension://elhmdaagaecmmgadddgmbijgkpocklih/index.html"
-  });
