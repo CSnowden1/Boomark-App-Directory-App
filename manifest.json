@@ -19,7 +19,7 @@
     },
     "action": {
         "default_popup": "popup.html",
-        "default_title": "Iphone-like Bookmark Display"
+        "default_title": "Bookmark Directory"
     },
     "options_ui": {
         "page": "options.html"
