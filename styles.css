@@ -108,8 +108,8 @@ body {
 
 
 .bookmark-element {
-    border: solid rgb(26, 24, 24);
     height: 2rem;
     width: 2rem;
-    font-size: .5px;
+    background-size: cover;
+    background-position: center;
 }

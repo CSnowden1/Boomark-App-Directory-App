@@ -18,11 +18,15 @@ chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
             folderBox.innerText = bookmarkFolder.title;
             gridContainer.append(folderBox);
             for(const bookmark of bookmarkFolder.children) {
-                    let bookmarkElement = document.createElement("div");
-                    bookmarkElement.classList.add("bookmark-element");
-                    folderBox.append(folderContainer);
-                    bookmarkElement.innerText = bookmark.title;
-                    folderContainer.append(bookmarkElement);
+                let bookmarkElement = document.createElement("div");
+                bookmarkElement.classList.add("bookmark-element");
+                folderBox.append(folderContainer);
+                const img = document.createElement("img");
+                chrome.favicon.getFavicon(bookmark.url, function(favicon) {
+                    img.src = favicon;
+                });
+                bookmarkElement.appendChild(img);
+                folderContainer.append(bookmarkElement);
             }
         }
     });
