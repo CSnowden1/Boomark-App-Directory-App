@@ -1,47 +1,32 @@
-// Retrieve the bookmarks
-
 let gridContainer = document.getElementById("container");
 
-
-
-chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-    const bookmarks = flattenNodes(bookmarkTreeNodes);
-
-
-
-    bookmarks.forEach(function(bookmarkFolder) {
-        if ("children" in bookmarkFolder) {
-            let folderBox = document.createElement("div");
-            folderBox.classList.add("folder-box");
-            let folderContainer = document.createElement("div");
-            folderContainer.classList.add("folder-container");
-            folderBox.innerText = bookmarkFolder.title;
-            gridContainer.append(folderBox);
-            for(const bookmark of bookmarkFolder.children) {
+function createBookmarkElements(bookmark, parentContainer) {
+    if ("children" in bookmark) {
+        let folderBox = document.createElement("div");
+        folderBox.classList.add("folder-box");
+        folderBox.innerText = bookmark.title;
+        let bookmarkGrid = document.createElement("div");
+        folderBox.append(bookmarkGrid);
+        bookmarkGrid.classList.add("bookmark-grid");
+        for(const child of bookmark.children) {
+            if ("children" in child) {
+                createBookmarkElements(child, bookmarkGrid);
+            } else {
                 let bookmarkElement = document.createElement("div");
                 bookmarkElement.classList.add("bookmark-element");
-                folderBox.append(folderContainer);
                 const img = document.createElement("img");
-                chrome.favicon.getFavicon(bookmark.url, function(favicon) {
-                    img.src = favicon;
-                });
+                img.src = child.url + '/favicon.ico';
                 bookmarkElement.appendChild(img);
-                folderContainer.append(bookmarkElement);
+                bookmarkGrid.append(bookmarkElement);
             }
         }
-    });
-
-});
-
-function flattenNodes(nodes) {
-    var bookmarks = [];
-    nodes.forEach(function(node) {
-        bookmarks.push(node);
-        if (node.children) {
-            bookmarks = bookmarks.concat(flattenNodes(node.children));
-        }
-    });
-    return bookmarks;
+        parentContainer.append(folderBox);
+    }
 }
 
-
+chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+    let bookmarkBar = bookmarkTreeNodes[0].children[0];
+    for (const child of bookmarkBar.children) {
+        createBookmarkElements(child, gridContainer);
+    }
+});
