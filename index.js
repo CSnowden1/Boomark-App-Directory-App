@@ -4,6 +4,9 @@ function createBookmarkElements(bookmark, parentContainer) {
     if ("children" in bookmark) {
         let folderBox = document.createElement("div");
         folderBox.classList.add("folder-box");
+        if(parentContainer.classList.contains("bookmark-grid")){
+          folderBox.classList.add("nested");
+        }
         folderBox.innerText = bookmark.title;
         let bookmarkGrid = document.createElement("div");
         folderBox.append(bookmarkGrid);

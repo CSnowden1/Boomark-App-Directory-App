@@ -42,83 +42,42 @@ table {
 	border-spacing: 0;
 }
 
-
-
 html {
     background: transparent;
 }
-
 
 body {
     display: flex;
     flex-direction: column;
     align-content: center;
-
 }
 
-::-webkit-scrollbar {
-    width: 0.5em; /* Width of the scrollbar */
-    background-color: #9c9797; /* Color of the scrollbar */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #000000; /* Color of the thumb */
-  border-radius: 5px; /* Rounded corners */
-}
-
-.header {
-    display: flex;
-}
-
-
-.search-bar {
-    width: 80%;
-    border: solid black 1px;
-    border-radius: .5rem;
-    height: auto;
-    text-align: center;
-    align-self: center;
-    font-size: .5rem;
-    padding-top: .2rem;
-    padding-bottom: .75rem;
-    font-weight: 500;
-}
-
-
-/* Directory Grid */
+/* Grid container for top-level elements */
 .container {
-    margin-top: 1rem;
+    margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 4rem);
-    gap: .5rem;
+    grid-template-rows: repeat(4, 4em);
+    gap: 0.5em;
     align-self: center;
-
 }
-
 
 /* Folder */
 .folder-box {
-    height: auto;
-    width: 3rem;
+    width: 5em;
+    height: 5em;
     display: flex;
     flex-direction: column;
-    border: solid rgb(218, 218, 218);
-    font-size: 5px;
-    font-weight: 800;
     align-items: center;
     overflow: hidden;
-    background-color: rgb(236, 236, 236);
-    opacity: 50;
-    border-radius: 5px;
-    border: solid black 1px;
-
+    border: solid brown 0.03em;
+    background-color: #9c9797;
+    font-size: 0.5em;
 }
 
-
 .folder-box:hover {
-    width: 10rem;
-    height: 10rem;
+    width: 10em;
+    height: 10em;
     z-index: 1;
     position: sticky;
     top: 50%;
@@ -126,39 +85,35 @@ body {
     transform: translate(-50%, -50%);
 }
 
-
-
-
-/* Bookmark Grid within Folder */
-.bookmark-grid {
-    margin-top: 3px;
+/* Grid container for nested elements */
+.folder-box .bookmark-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    font-size: 1px;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+    gap: 0.5em;
     justify-items: center;
-
+    font-size: 0.2em;
 }
-
 
 /* Bookmark */
-.bookmark-element {
-    width: 7px;
-    height: 7px;
+.folder-box .bookmark-element {
+    width: 0.9em;
+    height: 0.9em;
     border: solid black;
+    font-size: 0.2em;
 }
 
-.bookmark-element:hover {
+.folder-box .bookmark-element:hover {
     cursor: pointer;
-    width: 11px;
-    height: 11px;
+    width: 1.1em;
+    height: 1.1em;
 }
 
-
-.bookmark-element img {
-    width: .2rem;
-    height: .2rem;
+.folder-box .bookmark-element img {
+    width: 0.9em;
+    height: 0.9em;
 }
+
+.folder-box:hover {
+    font-size: 1em;
+}
+
