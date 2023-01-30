@@ -43,7 +43,7 @@ table {
 }
 
 html {
-    background: transparent;
+    background: #0A192C;
 }
 
 body {
@@ -70,10 +70,20 @@ body {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    border: solid brown 0.03em;
-    background-color: #9c9797;
-    font-size: 0.5em;
+    font-size: 0.5rem;
+    background: #F1F8FA;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 1em;
 }
+
+
+
+
+
+
+
+
+
 
 .folder-box:hover {
     width: 10em;
@@ -91,29 +101,53 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5em;
     justify-items: center;
-    font-size: 0.2em;
+    font-size: 0.1em; /* changed */
 }
+
+
+
+/* Nested Folders */
+.folder-box .secondary-folder {
+    width: 50em; /* changed */
+    height: 50em; /* changed */
+    font-size: 0.2em;
+    border: solid black .2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.folder-box .secondary-folder:hover {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
 
 /* Bookmark */
 .folder-box .bookmark-element {
-    width: 0.9em;
-    height: 0.9em;
-    border: solid black;
+    width: 50em; /* changed */
+    height: 50em; /* changed */
     font-size: 0.2em;
+    border: solid black .2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .folder-box .bookmark-element:hover {
     cursor: pointer;
-    width: 1.1em;
-    height: 1.1em;
+    width: 100%;
+    height: 100%;
 }
 
 .folder-box .bookmark-element img {
-    width: 0.9em;
-    height: 0.9em;
+    width: 100%;
+    height: 100%;
 }
 
 .folder-box:hover {
     font-size: 1em;
 }
-
