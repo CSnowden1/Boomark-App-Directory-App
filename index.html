@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Bookmark Directory</title>
 </head>
 <body>
     <div class="header">
@@ -16,10 +16,16 @@
         <div class="enlarge-btn"></div>
         <div class="close-btn"></div>
     </div>
-    <div class="search-bar">Bookmark Directory</div>
+    <div class="search-container">
+		<div class="search-bar">
+			<input type="text" id="search-input" placeholder="Search bookmarks...">
+			<div id="search-results"></div>
+		</div>
+	</div>
     <div class="container" id="container">
 
     </div>
 </body>
+<script src="search.js"></script>
 <script src="index.js"></script>
 </html>

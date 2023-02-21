@@ -46,10 +46,55 @@ html {
     background: #0A192C;
 }
 
-body {
+
+
+.search-container {
+    margin-top: 1em;
     display: flex;
-    flex-direction: column;
-    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+}
+
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+#search-input {
+    font-size: 1rem;
+    color: white;
+    padding: .5rem;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 80%;
+    height: 2rem;
+}
+
+#search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+#search-results a {
+    display: block;
+    padding: .5rem;
+    color: white;
+    text-decoration: none;
+}
+
+#search-results a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Grid container for top-level elements */
@@ -57,37 +102,33 @@ body {
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 4em);
-    gap: 0.5em;
-    align-self: center;
+    grid-template-rows: repeat(4, 1em);
+    gap: 3%;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: .2rem;
 }
 
 /* Folder */
 .folder-box {
-    width: 5em;
-    height: 5em;
+    width: 4.2em;
+    height: 4.2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    font-size: 0.5rem;
-    background: #F1F8FA;
+    font-size: 0.12rem;
+    background: #2d3233;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 1em;
+    border-radius: .2em;
 }
 
 
-
-
-
-
-
-
-
-
 .folder-box:hover {
-    width: 10em;
-    height: 10em;
+    width: 5em;
+    height: 5em;
     z-index: 1;
     position: sticky;
     top: 50%;
@@ -108,8 +149,8 @@ body {
 
 /* Nested Folders */
 .folder-box .secondary-folder {
-    width: 50em; /* changed */
-    height: 50em; /* changed */
+    width: 30em; /* changed */
+    height: 30em; /* changed */
     font-size: 0.2em;
     border: solid black .2em;
     display: flex;
@@ -127,8 +168,8 @@ body {
 
 /* Bookmark */
 .folder-box .bookmark-element {
-    width: 50em; /* changed */
-    height: 50em; /* changed */
+    width: 30em; /* changed */
+    height: 30em; /* changed */
     font-size: 0.2em;
     border: solid black .2em;
     display: flex;
@@ -149,5 +190,5 @@ body {
 }
 
 .folder-box:hover {
-    font-size: 1em;
+    font-size: .25em;
 }
