@@ -44,17 +44,69 @@ table {
 
 html {
     background: #0A192C;
+
+}
+
+body {
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: auto;
+    width: 100%;
+    border: pink;
+}
+
+
+.current-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    font-size: .2rem;
+    font-weight: 700;
+    color: white;
+    width: auto;
+
+}
+
+.weather-box {
+    height: 0.5rem;
+    width: 0.5rem;
+    border: solid blue;
+}
+
+.weather-data {
+    color: white;
+    font-size: .25rem;
+}
+
+
+.settings-btn {
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.settings-btn img {
+    width: 0.2rem;
+    height: 0.2rem;
+}
+
 
 .search-container {
-    margin-top: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 3rem;
-    height: 3rem;
+    height: 1rem;
 }
 
 .search-bar {
@@ -63,14 +115,14 @@ html {
 }
 
 #search-input {
-    font-size: 1rem;
+    font-size: .25rem;
     color: white;
-    padding: .5rem;
+    padding: 0.3rem;
     border-radius: 4px;
     border: none;
     background-color: rgba(255, 255, 255, 0.2);
-    width: 80%;
-    height: 2rem;
+    width: 92%;
+    height: 0rem;
 }
 
 #search-results {
@@ -105,53 +157,94 @@ html {
     grid-template-rows: repeat(4, 1em);
     gap: 3%;
     align-content: center;
-    justify-content: center;
+    justify-items: center;
     width: 100%;
     height: auto;
-    padding: .2rem;
+}
+
+.folder-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.folder-container.active {
+    width: 3em;
+    height: 3rem;
+    /* z-index: 1; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: 20;
+}
+  .darken-background {
+    background-color: rgba(0, 0, 0, 85%);
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: absolute;
+    z-index: 15;
+  }
+
+
+
+.folder-title {
+    font-size: 0.15rem;
+    color: white;
+    margin-top: 0.08rem;
+}
+
+.folder-title.active {
+    font-size: .25rem;
 }
 
 /* Folder */
 .folder-box {
-    width: 4.2em;
-    height: 4.2em;
+    width: 6.2em;
+    height: 6.2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    font-size: 0.12rem;
-    background: #2d3233;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.16);
-    border-radius: .2em;
+    font-size: 0.1rem;
+    background: #468787;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 16%);
+    border-radius: 0.2em;
 }
 
-
-.folder-box:hover {
-    width: 5em;
-    height: 5em;
-    z-index: 1;
-    position: sticky;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.folder-box.active {
+    border: solid black 0.5px;
+    height: 88%;
+    width: 100%;
 }
 
 /* Grid container for nested elements */
 .folder-box .bookmark-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.5em;
-    justify-items: center;
-    font-size: 0.1em; /* changed */
+    gap: 12em;
+    font-size: 0.1em;
+    margin-top: 5em;
+    width: 100%;
 }
+
+.bookmark-element.active {
+    width: 0.55rem;
+    height: 0.55rem;
+    border: solid 0.2px #262020c7;
+    background-color: azure;
+}
+
 
 
 
 /* Nested Folders */
 .folder-box .secondary-folder {
-    width: 30em; /* changed */
-    height: 30em; /* changed */
-    font-size: 0.2em;
+    width: auto; /* changed */
+    height: auto; /* changed */
+    font-size: 0.1em;
     border: solid black .2em;
     display: flex;
     align-items: center;
@@ -159,36 +252,30 @@ html {
 }
 
 
-.folder-box .secondary-folder:hover {
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-}
+
 
 
 /* Bookmark */
-.folder-box .bookmark-element {
+.bookmark-element {
     width: 30em; /* changed */
     height: 30em; /* changed */
     font-size: 0.2em;
-    border: solid black .2em;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 
-.folder-box .bookmark-element:hover {
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-}
+
 
 .folder-box .bookmark-element img {
     width: 100%;
     height: 100%;
 }
 
-.folder-box:hover {
-    font-size: .25em;
+.folder-container.nested.active {
+    height: 68em;
+    width: 41em;
+    position: relative;
 }
+

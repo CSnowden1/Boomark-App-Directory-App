@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1"
+  },
+  "name": "boomark-app-directory-app",
+  "version": "1.0.0",
+  "description": "Bookmark Directory",
+  "main": "dateWeather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSnowden1/Boomark-App-Directory-App.git"
+  },
+  "author": "Chris Snowden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSnowden1/Boomark-App-Directory-App/issues"
+  },
+  "homepage": "https://github.com/CSnowden1/Boomark-App-Directory-App#readme"
+}

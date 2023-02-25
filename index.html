@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdnjs.cloudflare.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Bookmark Directory</title>
 </head>
 <body>
+    <div class="darken-background"></div>
     <div class="header">
-        <div class="seetings-btn"></div>
-        <div class="current-time"></div>
-        <div class="options-btn"></div>
-        <div class="minumize-btn"></div>
-        <div class="enlarge-btn"></div>
-        <div class="close-btn"></div>
+        <div class="weather-box"  id="weather-container">
+            <div id="weather-animation"></div>
+            <div class="wheather-data"  id="weather-info"></div>
+        </div>
+        <div class="current-time"  id="datetime-container">
+            <div id="date"></div>
+            <div id="time"></div>
+        </div>
+        <div class="settings-btn">
+            <img src="./icons/Vector.svg" >
+        </div>
     </div>
     <div class="search-container">
 		<div class="search-bar">
@@ -26,6 +34,8 @@
 
     </div>
 </body>
+<script src="anime.min.js"></script>
+<script src="dateWeather.js"></script>
 <script src="search.js"></script>
 <script src="index.js"></script>
 </html>
