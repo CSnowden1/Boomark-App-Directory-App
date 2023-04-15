@@ -5,21 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-icons/foundation-icons.min.css">
     <title>Document</title>
 </head>
 <body>
-    <div class="header">
-        <div class="seetings-btn"></div>
-        <div class="current-time"></div>
-        <div class="options-btn"></div>
-        <div class="minumize-btn"></div>
-        <div class="enlarge-btn"></div>
-        <div class="close-btn"></div>
+    <div class="grid-x">
+        <div class="cell">
+            <ul class="menu">
+                <li><a href="#"><i class="fi-list"></i> Menu</a></li>
+            </ul>
+        </div>
+        <div class="cell">
+            <div class="cell small-12">
+                <form>
+                    <div class="input-group">
+                        <input class="input-group-field" type="text" placeholder="Search">
+                        <div class="input-group-button">
+                        <button class="button" type="submit">Search Bookmarks</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="search-bar">Bookmark Directory</div>
-    <div class="container">
+    <div class="grid-x" id="bookmark-grid">
 
-    </div>
+    </div>    
 </body>
+
 <script src=""></script>
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
 </html>
