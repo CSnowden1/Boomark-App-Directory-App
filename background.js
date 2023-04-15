@@ -1,10 +1,4 @@
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.bookmarks.create({
-        parentId: "1", // the ID of the bookmark bar
-        title: "Bookmark Directory",
-        url: chrome.runtime.getURL("index.html")
-    });
-});
+
 
 chrome.bookmarks.search({'title': 'Bookmark Directory'}, function(bookmarks) {
     if (bookmarks.length > 0) {
