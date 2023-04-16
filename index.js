@@ -1,36 +1,15 @@
-let bookmarkGrid = document.getElementById("bookmark-grid");
+//let bookmarkGrid = document.getElementById("bookmark-grid");
 
-let generateBookmarkDirectory = (bookmarks, parent) => {
-  let ul = document.createElement("ul");
-  ul.classList.add('menu', 'vertical');
-  parent.appendChild(ul); 
 
-  bookmarks.forEach(function(bookmark) {
-    let li = document.createElement("li");
-    let a = document.createElement("a");
-    if (bookmark.children) {
-      li.classList.add('has-submenu');
-      a.setAttribute('data-toggle', 'submenu');
-      a.setAttribute('aria-haspopup', 'true');
-      a.setAttribute('aria-expanded', 'false');
-      a.textContent = bookmark.title;
-      a.href = bookmark.url;
-      let submenu = generateBookmarkDirectory(bookmark.children, li);
-      li.appendChild(submenu);
-    } else {
-      a.textContent = bookmark.title;
-      a.href = bookmark.url;
-    }
-    li.appendChild(a);
-    ul.appendChild(li);
+
+
+const dots = document.querySelectorAll('.dot');
+const panels = document.querySelector('.grid-box');
+
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    console.log(index)
+    console.log("clicked")
+    panels.style.transform = `translateX(-${index * 100}%)`;
   });
-
-  return ul;
-}
-
-
-  chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-    let bookmarks = bookmarkTreeNodes;
-    generateBookmarkDirectory(bookmarks, bookmarkGrid);
-  });
-  
+});
