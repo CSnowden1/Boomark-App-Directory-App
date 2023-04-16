@@ -1,32 +1,36 @@
-let gridContainer = document.getElementById("container");
+let bookmarkGrid = document.getElementById("bookmark-grid");
 
-function createBookmarkElements(bookmark, parentContainer) {
-    if ("children" in bookmark) {
-        let folderBox = document.createElement("div");
-        folderBox.classList.add("folder-box");
-        folderBox.innerText = bookmark.title;
-        let bookmarkGrid = document.createElement("div");
-        folderBox.append(bookmarkGrid);
-        bookmarkGrid.classList.add("bookmark-grid");
-        for(const child of bookmark.children) {
-            if ("children" in child) {
-                createBookmarkElements(child, bookmarkGrid);
-            } else {
-                let bookmarkElement = document.createElement("div");
-                bookmarkElement.classList.add("bookmark-element");
-                const img = document.createElement("img");
-                img.src = child.url + '/favicon.ico';
-                bookmarkElement.appendChild(img);
-                bookmarkGrid.append(bookmarkElement);
-            }
-        }
-        parentContainer.append(folderBox);
+let generateBookmarkDirectory = (bookmarks, parent) => {
+  let ul = document.createElement("ul");
+  ul.classList.add('menu', 'vertical');
+  parent.appendChild(ul); 
+
+  bookmarks.forEach(function(bookmark) {
+    let li = document.createElement("li");
+    let a = document.createElement("a");
+    if (bookmark.children) {
+      li.classList.add('has-submenu');
+      a.setAttribute('data-toggle', 'submenu');
+      a.setAttribute('aria-haspopup', 'true');
+      a.setAttribute('aria-expanded', 'false');
+      a.textContent = bookmark.title;
+      a.href = bookmark.url;
+      let submenu = generateBookmarkDirectory(bookmark.children, li);
+      li.appendChild(submenu);
+    } else {
+      a.textContent = bookmark.title;
+      a.href = bookmark.url;
     }
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  return ul;
 }
 
-chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-    let bookmarkBar = bookmarkTreeNodes[0].children[0];
-    for (const child of bookmarkBar.children) {
-        createBookmarkElements(child, gridContainer);
-    }
-});
+
+  chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+    let bookmarks = bookmarkTreeNodes;
+    generateBookmarkDirectory(bookmarks, bookmarkGrid);
+  });
+  
