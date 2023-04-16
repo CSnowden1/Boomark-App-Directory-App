@@ -1,164 +1,25 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-
-
-html {
-    background: transparent;
-}
-
-
-body {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-
-}
-
-::-webkit-scrollbar {
-    width: 0.5em; /* Width of the scrollbar */
-    background-color: #9c9797; /* Color of the scrollbar */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #000000; /* Color of the thumb */
-  border-radius: 5px; /* Rounded corners */
-}
-
-.header {
-    display: flex;
-}
-
-
-.search-bar {
-    width: 80%;
-    border: solid black 1px;
-    border-radius: .5rem;
-    height: auto;
-    text-align: center;
-    align-self: center;
-    font-size: .5rem;
-    padding-top: .2rem;
-    padding-bottom: .75rem;
-    font-weight: 500;
-}
-
-
-/* Directory Grid */
-.container {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 4rem);
-    gap: .5rem;
-    align-self: center;
-
-}
-
-
-/* Folder */
-.folder-box {
-    height: auto;
-    width: 3rem;
-    display: flex;
-    flex-direction: column;
-    border: solid rgb(218, 218, 218);
-    font-size: 5px;
-    font-weight: 800;
-    align-items: center;
-    overflow: hidden;
-    background-color: rgb(236, 236, 236);
-    opacity: 50;
-    border-radius: 5px;
-    border: solid black 1px;
-
-}
-
-
-.folder-box:hover {
-    width: 10rem;
-    height: 10rem;
-    z-index: 1;
-    position: sticky;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
-
-
-/* Bookmark Grid within Folder */
 .bookmark-grid {
-    margin-top: 3px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    font-size: 1px;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    justify-items: center;
-
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    justify-content: center;
+    gap: 5%;
 }
 
 
-/* Bookmark */
-.bookmark-element {
-    width: 7px;
-    height: 7px;
+
+.top-box {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-template-rows: auto;
+    justify-content: center;
+    padding: 7%;
+    gap: 5%;
     border: solid black;
 }
 
-.bookmark-element:hover {
-    cursor: pointer;
-    width: 11px;
-    height: 11px;
-}
 
-
-.bookmark-element img {
-    width: .2rem;
-    height: .2rem;
+.item {
+    border: solid black;
+    
 }
