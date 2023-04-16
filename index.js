@@ -1,30 +1,36 @@
 let bookmarkGrid = document.getElementById("bookmark-grid");
-window.addEventListener('load', 
-    function() {
-        chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-            let bookmarks = flattenNodes(bookmarkTreeNodes);
-            let ul = document.createElement("ul");
 
-            bookmarks.forEach(function(bookmark) {
-                var li = document.createElement("li");
-                var a = document.createElement("a");
-                a.href = bookmark.url;
-                a.innerText = bookmark.title;
-                li.appendChild(a);
-                ul.appendChild(li);
-            });
+let generateBookmarkDirectory = (bookmarks, parent) => {
+  let ul = document.createElement("ul");
+  ul.classList.add('menu', 'vertical');
+  parent.appendChild(ul); 
 
-            bookmarkGrid.appendChild(ul);
-        });
+  bookmarks.forEach(function(bookmark) {
+    let li = document.createElement("li");
+    let a = document.createElement("a");
+    if (bookmark.children) {
+      li.classList.add('has-submenu');
+      a.setAttribute('data-toggle', 'submenu');
+      a.setAttribute('aria-haspopup', 'true');
+      a.setAttribute('aria-expanded', 'false');
+      a.textContent = bookmark.title;
+      a.href = bookmark.url;
+      let submenu = generateBookmarkDirectory(bookmark.children, li);
+      li.appendChild(submenu);
+    } else {
+      a.textContent = bookmark.title;
+      a.href = bookmark.url;
+    }
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
 
-        function flattenNodes(nodes) {
-            var bookmarks = [];
-            nodes.forEach(function(node) {
-                bookmarks.push(node);
-                if (node.children) {
-                    bookmarks = bookmarks.concat(flattenNodes(node.children));
-                }
-            });
-            return bookmarks;
-        }
-});
+  return ul;
+}
+
+
+  chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+    let bookmarks = bookmarkTreeNodes;
+    generateBookmarkDirectory(bookmarks, bookmarkGrid);
+  });
+  
