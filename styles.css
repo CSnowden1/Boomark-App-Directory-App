@@ -20,9 +20,22 @@
     transition: transform 0.3s ease;
 }
 
-.content-box {
+.content-box{
     display: flex;
     flex-direction: column;
+}
+
+
+.folder-content-box {
+    width: 11rem;
+    z-index: 2;
+    background-color: red;
+    position: absolute;
+    height: 17rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 .grid-box {

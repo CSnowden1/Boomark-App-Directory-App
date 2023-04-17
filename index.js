@@ -5,26 +5,32 @@
 
 const dots = document.querySelectorAll('.dot');
 const panels = document.querySelector('.grid-box');
-
+const topBox = document.querySelector('.top-box');
+console.log(dots);
 dots.forEach((dot, index) => {
   dot.addEventListener('click', () => {
-    console.log(index)
-    console.log("clicked")
     panels.style.transform = `translateX(-${index * 100}%)`;
   });
 });
 
 
-let folder = document.querySelectorAll("folder");
+let folder = document.querySelectorAll(".folder");
 console.log(folder);
+
+
 folder.forEach((bin) => {
-  bin.addEventListener('clicked', () => {
+  bin.addEventListener('click', () => {
     console.log("folder clicked")
-    let contentBox = createElement("div");
-    //add class for content box
-    let container = createElement('div');
-    let title = createElement("h4");
-    let gridBox = createElement("div");
-    let boxGrid = createElement("div")
+    let folderContainer = document.createElement('div');
+    let xButton= document.createElement('h3')
+    xButton.textContent = "X";
+    folderContainer.classList.add("folder-content-box");
+    topBox.append(folderContainer);
+    folderContainer.append(xButton);
+    folderContainer.append(folder[0]);
+    xButton.addEventListener('click', () => {
+      console.log('X clicked')
+      folderContainer.remove()
+    })
   })
 })
