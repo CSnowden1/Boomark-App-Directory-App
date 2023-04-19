@@ -6,49 +6,58 @@ let topBoxElement = document.createElement("div").classList.add("top-box");
 let contentBoxElement = document.createElement("div").classList.add("content-box");
 let gridBoxElement = document.createElement("div").classList.add("grid-box");
 let itemElement = document.createElement("div").classList.add("item");
-let folderElement = document.createElement("div").document.createElement("i").classList.add("fas fa-folder folder");
-folderElement.id = "folder";
-let folderNameElement = document.createElement("div").document.createElement("p");
+let folderElement = document.createElement("div")
+let folderItem = document.createElement("i").classList.add("fas");
+let folderNameElement = document.createElement("div");
+let folderName = document.createElement("p");
 
 
-let gridFolderItem = containerElement.append(topBoxElement).append(contentBoxElement).append(gridBoxElement).append(itemElement).append(itemElement).append(folderElement).append(folderNameElement)
 
 
-let generateBookmarkDirectory = (bookmarks, parent) => {
-  let ul = document.createElement("ul");
-  ul.classList.add('menu', 'vertical');
-  parent.appendChild(ul); // Append the submenu to the parent <li> element
-
-  bookmarks.forEach(function(bookmark) {
-    if (bookmark.hasOwnProperty('children')) {
-      console.log('This is a Folder');
-      bookmarkGrid.append(gridFolderItem)
-    } else {
-      bookmarkGrid.append(folderElement)
-    }
-    let li = document.createElement("li");
-    let a = document.createElement("a");
-    a.textContent = bookmark.title;
+let generateBookmarkDirectory = (bookmarks) => {
+  bookmarks.forEach((bookmark) => {
     if (bookmark.children) {
-      li.classList.add('has-submenu');
-      a.setAttribute('data-toggle', 'submenu');
-      a.setAttribute('aria-haspopup', 'true');
-      a.setAttribute('aria-expanded', 'false');
-      let submenu = generateBookmarkDirectory(bookmark.children, li);
-      li.appendChild(submenu);
-    } else {
-      a.href = bookmark.url;
+      let container = document.createElement("div");
+      container.classList.add("container");
+      container.append(topBoxElement);
+      topBoxElement.append(contentBoxElement);
+      contentBoxElement.append(gridBoxElement);
+     
+      folderElement(folderItem)
+      bookmarkGrid.appendChild(container);
+        bookmark.forEach((item) => {
+          if(item.children) {
+            gridBoxElement.append(itemElement);
+            itemElement.append(folderElement);
+            folderElement.id = "folder";
+            folderElement.append(folderNameElement);
+            folderNameElement.append(folderName);
+          }
+        })
     }
-    li.appendChild(a);
-    ul.appendChild(li);
   });
-
-  return ul; 
-}
+};
+    //let li = document.createElement("li");
+    //let a = document.createElement("a");
+    //a.textContent = bookmark.title;
+    //if (bookmark.children) {
+    //  li.classList.add('has-submenu');
+     // a.setAttribute('data-toggle', 'submenu');
+      //a.setAttribute('aria-haspopup', 'true');
+      //a.setAttribute('aria-expanded', 'false');
+      //let submenu = generateBookmarkDirectory(bookmark.children, li);
+      //li.appendChild(submenu);
+    //} else {
+     // a.href = bookmark.url;
+    //}
+    //li.appendChild(a);
+    //ul.appendChild(li);
 
 chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-  let bookmarks = bookmarkTreeNodes;
-  generateBookmarkDirectory(bookmarks, bookmarkGrid);
+  let bookmarks = bookmarkTreeNodes[0].children[0].children;
+  generateBookmarkDirectory(bookmarks);
+  console.log(bookmarks)
+  console.log(bookmarkTreeNodes[0].children[0].children)
 });
 
 
