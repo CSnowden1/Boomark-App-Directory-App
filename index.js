@@ -18,7 +18,21 @@ let generateBookmarkDirectory = (bookmarks) => {
   bookmarks.forEach((bookmark) => {
     if (bookmark.children) {
       let container = document.createElement("div");
-      container.classList.add("folder-container");
+      container.classList.add("container");
+      let topBox = document.createElement("div");
+      topBox.classList.add("top-box");
+      container.appendChild(topBox);
+      let contentBox = document.createElement("div");
+      contentBox.classList.add("content-box");
+      topBox.appendChild(contentBox);
+      titleContainer = document.createElement("div");
+      titleContainer.classList.add("container");
+      let titleBox = document.createElement("h4");
+      titleBox.innerText = bookmark.title;
+      titleContainer.appendChild(titleBox)
+      contentBox.appendChild(titleBox);
+
+
       bookmarkGrid.appendChild(container);
     }
   });
