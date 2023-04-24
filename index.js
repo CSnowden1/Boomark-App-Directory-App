@@ -18,25 +18,17 @@ let generateBookmarkDirectory = (bookmarks) => {
   bookmarks.forEach((bookmark) => {
     if (bookmark.children) {
       let container = document.createElement("div");
-      container.classList.add("container");
-      container.append(topBoxElement);
-      topBoxElement.append(contentBoxElement);
-      contentBoxElement.append(gridBoxElement);
-     
-      folderElement(folderItem)
+      container.classList.add("folder-container");
       bookmarkGrid.appendChild(container);
-        bookmark.forEach((item) => {
-          if(item.children) {
-            gridBoxElement.append(itemElement);
-            itemElement.append(folderElement);
-            folderElement.id = "folder";
-            folderElement.append(folderNameElement);
-            folderNameElement.append(folderName);
-          }
-        })
     }
   });
 };
+
+chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+  let bookmarks = bookmarkTreeNodes[0].children[0].children;
+  generateBookmarkDirectory(bookmarks);
+});
+
     //let li = document.createElement("li");
     //let a = document.createElement("a");
     //a.textContent = bookmark.title;
