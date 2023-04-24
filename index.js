@@ -32,6 +32,37 @@ let generateBookmarkDirectory = (bookmarks) => {
       titleContainer.appendChild(titleBox)
       contentBox.appendChild(titleBox);
 
+      let gridBox = document.createElement("div");
+      gridBox.classList.add("grid-box");
+      contentBox.appendChild(gridBox);
+
+      let boxGrid = document.createElement("div");
+      boxGrid.classList.add("box-grid");
+      gridBox.appendChild(boxGrid);
+
+        bookmark.children.forEach((item) => {
+
+          let itemContainer = document.createElement("div");
+          itemContainer.classList.add("item");
+
+          let namelessDiv = document.createElement("div");
+          let folderIcon = document.createElement("i");
+          folderIcon.classList.add("fas");
+          folderIcon.classList.add("fa-folder");
+          folderIcon.classList.add("folder");
+          namelessDiv.appendChild(folderIcon);
+          
+          let namelessDivTwo = document.createElement("div");
+          let iconName = document.createElement("p");
+          iconName.innerText = item.title;
+
+          namelessDivTwo.appendChild(iconName);
+
+          itemContainer.appendChild(namelessDiv);
+          itemContainer.appendChild(namelessDivTwo);
+
+          boxGrid.appendChild(itemContainer);
+        })
 
       bookmarkGrid.appendChild(container);
     }
