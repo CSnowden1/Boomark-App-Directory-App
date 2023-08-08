@@ -1,18 +1,4 @@
-//let bookmarkGrid = document.getElementById("bookmark-grid");
-
 let bookmarkGrid = document.getElementById("bookmark-grid");
-let containerElement = document.createElement("div").classList.add("container");
-let topBoxElement = document.createElement("div").classList.add("top-box");
-let contentBoxElement = document.createElement("div").classList.add("content-box");
-let gridBoxElement = document.createElement("div").classList.add("grid-box");
-let itemElement = document.createElement("div").classList.add("item");
-let folderElement = document.createElement("div")
-let folderItem = document.createElement("i").classList.add("fas");
-let folderNameElement = document.createElement("div");
-let folderName = document.createElement("p");
-
-
-
 
 let generateBookmarkDirectory = (bookmarks) => {
   bookmarks.forEach((bookmark) => {
@@ -25,12 +11,9 @@ let generateBookmarkDirectory = (bookmarks) => {
       let contentBox = document.createElement("div");
       contentBox.classList.add("content-box");
       topBox.appendChild(contentBox);
-      titleContainer = document.createElement("div");
-      titleContainer.classList.add("container");
       let titleBox = document.createElement("h4");
       titleBox.innerText = bookmark.title;
-      titleBox.classList.add("container-title")
-      titleContainer.appendChild(titleBox)
+      titleBox.classList.add("container-title");
       contentBox.appendChild(titleBox);
 
       let gridBox = document.createElement("div");
@@ -41,104 +24,45 @@ let generateBookmarkDirectory = (bookmarks) => {
       boxGrid.classList.add("box-grid");
       gridBox.appendChild(boxGrid);
 
-        bookmark.children.forEach((item) => {
+      bookmark.children.forEach((item) => {
+        let itemContainer = document.createElement("div");
+        itemContainer.classList.add("item");
 
-          let itemContainer = document.createElement("div");
-          itemContainer.classList.add("item");
+        if (item.url) {
+          // If it's a website link, create an anchor element
+          let link = document.createElement("a");
+          link.href = item.url;
+          link.target = "_blank"; // Open link in a new tab
+          link.innerText = item.title;
+          itemContainer.appendChild(link);
+        } else {
+          // If it's a folder, add a click event listener
+          itemContainer.addEventListener("click", () => {
+            console.log("Folder Clicked:", item.title, item.children);
+            // Add logic to handle opening the folder content
+          });
 
-          let namelessDiv = document.createElement("div");
+          // Create folder icon and title elements
           let folderIcon = document.createElement("i");
-          folderIcon.classList.add("fas");
-          folderIcon.classList.add("fa-folder");
-          folderIcon.classList.add("folder");
-          namelessDiv.appendChild(folderIcon);
-          
-          let namelessDivTwo = document.createElement("div");
-          namelessDivTwo.classList.add("folder-title-box")
-          
-          let iconName = document.createElement("p");
-          iconName.classList.add("folder-title");
-          iconName.innerText = item.title;
+          folderIcon.classList.add("fas", "fa-folder", "folder");
+          let folderTitle = document.createElement("p");
+          folderTitle.classList.add("folder-title");
+          folderTitle.innerText = item.title;
 
-          let iconNameTwo = document.createElement("p");
-          iconNameTwo.classList.add("folder-title");
-          iconNameTwo.innerText = item.title;
+          // Append elements to item container
+          itemContainer.appendChild(folderIcon);
+          itemContainer.appendChild(folderTitle);
+        }
 
-          let namelessDivThree = document.createElement("div");
-          namelessDivThree.classList.add("folder-title-tooltip")
-
-          namelessDivTwo.appendChild(iconName);
-          namelessDivThree.appendChild(iconNameTwo);
-
-          itemContainer.appendChild(namelessDiv);
-          itemContainer.appendChild(namelessDivTwo);
-          itemContainer.appendChild(namelessDivThree);
-
-          boxGrid.appendChild(itemContainer);
-        })
+        boxGrid.appendChild(itemContainer);
+      });
 
       bookmarkGrid.appendChild(container);
     }
   });
 };
 
-chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
   let bookmarks = bookmarkTreeNodes[0].children[0].children;
   generateBookmarkDirectory(bookmarks);
 });
-
-    //let li = document.createElement("li");
-    //let a = document.createElement("a");
-    //a.textContent = bookmark.title;
-    //if (bookmark.children) {
-    //  li.classList.add('has-submenu');
-     // a.setAttribute('data-toggle', 'submenu');
-      //a.setAttribute('aria-haspopup', 'true');
-      //a.setAttribute('aria-expanded', 'false');
-      //let submenu = generateBookmarkDirectory(bookmark.children, li);
-      //li.appendChild(submenu);
-    //} else {
-     // a.href = bookmark.url;
-    //}
-    //li.appendChild(a);
-    //ul.appendChild(li);
-
-chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-  let bookmarks = bookmarkTreeNodes[0].children[0].children;
-  generateBookmarkDirectory(bookmarks);
-  console.log(bookmarks)
-  console.log(bookmarkTreeNodes[0].children[0].children)
-});
-
-
-const dots = document.querySelectorAll('.dot');
-const panels = document.querySelector('.grid-box');
-const topBox = document.querySelector('.top-box');
-console.log(dots);
-dots.forEach((dot, index) => {
-  dot.addEventListener('click', () => {
-    panels.style.transform = `translateX(-${index * 100}%)`;
-  });
-});
-
-
-let folder = document.querySelectorAll(".folder");
-console.log(folder);
-
-
-folder.forEach((bin) => {
-  bin.addEventListener('click', () => {
-    console.log("folder clicked")
-    let folderContainer = document.createElement('div');
-    let xButton= document.createElement('h3')
-    xButton.textContent = "X";
-    folderContainer.classList.add("folder-content-box");
-    topBox.append(folderContainer);
-    folderContainer.append(xButton);
-    folderContainer.append(folder[0]);
-    xButton.addEventListener('click', () => {
-      console.log('X clicked')
-      folderContainer.remove()
-    })
-  })
-})
