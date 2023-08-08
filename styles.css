@@ -1,15 +1,27 @@
 .bookmark-grid {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20%;
-    grid-template-rows: auto;
-    justify-content: center;
-    gap: 5%;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); /* Responsive grid with minimum item width of 200px */
+    grid-auto-rows: auto; /* Automatically adjust row height based on content */
+    grid-gap: 10px; /* Adjust the gap between grid items */
+    max-width: 100%; 
+    margin: 0 auto; 
+    box-sizing: border-box; 
+    padding: 10px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 1rem;
+    border: solid  pink 1px;
+    width: auto;
+    height: auto;
+}
+
+
+.container-title {
+    align-self: center;
 }
 
 .top-box {
@@ -18,11 +30,17 @@
     background-color: rgb(221, 236, 236);
     overflow-x: auto;
     transition: transform 0.3s ease;
+    border: solid blue 1px;
+    width: 100%;
+    height: 100%;
 }
 
 .content-box{
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    border: solid orange 1px;
+    width: 100%;
 }
 
 
@@ -73,6 +91,50 @@
     height: 10px;
     border-radius: 50%;
     margin-right: 10px;
-    background: #000; /* or any desired color for the dots */
+    background: #000;
     cursor: pointer;
 }
+
+
+.folder-title-box {
+    display: flex;
+    justify-content: center;
+    text-overflow: ellipsis;
+    width: 100%;;
+}
+
+.folder-title {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+
+
+  .folder-title-box {
+    position: relative;
+  }
+  
+  .folder-title-tooltip {
+    margin-bottom: -2rem;
+    position: relative;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1px;
+    font-size: 10px;
+    white-space: wrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    width: auto;
+    z-index: 100;
+}
+  
+  .item:hover .folder-title-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }

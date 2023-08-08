@@ -29,6 +29,7 @@ let generateBookmarkDirectory = (bookmarks) => {
       titleContainer.classList.add("container");
       let titleBox = document.createElement("h4");
       titleBox.innerText = bookmark.title;
+      titleBox.classList.add("container-title")
       titleContainer.appendChild(titleBox)
       contentBox.appendChild(titleBox);
 
@@ -53,13 +54,25 @@ let generateBookmarkDirectory = (bookmarks) => {
           namelessDiv.appendChild(folderIcon);
           
           let namelessDivTwo = document.createElement("div");
+          namelessDivTwo.classList.add("folder-title-box")
+          
           let iconName = document.createElement("p");
+          iconName.classList.add("folder-title");
           iconName.innerText = item.title;
 
+          let iconNameTwo = document.createElement("p");
+          iconNameTwo.classList.add("folder-title");
+          iconNameTwo.innerText = item.title;
+
+          let namelessDivThree = document.createElement("div");
+          namelessDivThree.classList.add("folder-title-tooltip")
+
           namelessDivTwo.appendChild(iconName);
+          namelessDivThree.appendChild(iconNameTwo);
 
           itemContainer.appendChild(namelessDiv);
           itemContainer.appendChild(namelessDivTwo);
+          itemContainer.appendChild(namelessDivThree);
 
           boxGrid.appendChild(itemContainer);
         })
