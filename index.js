@@ -35,6 +35,7 @@ let generateBookmarkDirectory = (bookmarks) => {
           link.target = "_blank"; // Open link in a new tab
           link.innerText = item.title;
           itemContainer.appendChild(link);
+          link.classList.add("link");
         } else {
           // If it's a folder, add a click event listener
           itemContainer.addEventListener("click", () => {
@@ -61,6 +62,7 @@ let generateBookmarkDirectory = (bookmarks) => {
     }
   });
 };
+
 
 chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
   let bookmarks = bookmarkTreeNodes[0].children[0].children;
